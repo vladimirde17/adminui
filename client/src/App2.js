@@ -4,10 +4,15 @@ import Axios from "axios";
 import SearchBar from "./Components/SearchBar";
 
 function App() {
+  
+  const [name1, setName] = useState("");
+  const [age1, setAge] = useState(0);
+  const [mobileno1, setMobileno] = useState("");
+  const [testedby1, setTestedby] = useState("");
+  const [date1, setDate] = useState("");
 
-  const [filteredName, setFilteredName] = useState(null)
+  const [filteredOrder, setFilteredOrder] = useState(null)
 
-  const [result, setResult] = useState([])
   /*
   const displayInfo = () => {
     console.log(name+age+country+postion+wage);
@@ -142,16 +147,14 @@ function App() {
     testedbyFlag,
     dateFlag
   } = flags
-  
   return (
     <div className="App">
-      <SearchBar setFound={setFilteredName} setResult={setResult} data={customer1List} placeholder="Enter....." ></SearchBar>
-      {console.log("found",filteredName)}
+      <SearchBar setFound={setFilteredOrder} data={customer1List} placeholder="Enter....." ></SearchBar>
+      {console.log("found",filteredOrder)}
       <div className="information">
       <label>Order No.:</label>
         <div>
           <input
-            value={result.length === 1 ? result[0].orderno:""}
             type="number"
             name="orderno"
             onChange={handleChange}
@@ -180,160 +183,55 @@ function App() {
               }</span>
         </div>
         <label>Name:</label>
-        <div>
         <input
-        value={result.length === 1 ? result[0].name:""}
           type="text"
           name="name"
-          onChange={handleChange}
-            style={
-              nameFlag ?
-                { borderBottom: '2px solid #888' }
-                :
-                { borderBottom: '2px solid red' }
-            }
-            error="required"
-            required
-          />
-          <br/>
-          <span
-            style={
-              nameFlag ?
-                { color: 'black' }
-                :
-                { color: 'red' }
-            }
-          >{
-              nameFlag ?
-                ''
-                :
-                'invalid name'
-              }</span>
-        </div>
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+          error="required"
+          required
+        />
         <label>Age:</label>
-        <div>
         <input
-        value={result.length === 1 ? result[0].age:""}
           type="number"
           name="age"
-          onChange={handleChange}
-            style={
-              ageFlag ?
-                { borderBottom: '2px solid #888' }
-                :
-                { borderBottom: '2px solid red' }
-            }
-            error="required"
-            required
-          />
-          <br/>
-          <span
-            style={
-              ageFlag ?
-                { color: 'black' }
-                :
-                { color: 'red' }
-            }
-          >{
-              ageFlag ?
-                ''
-                :
-                'invalid age'
-              }</span>
-        </div>
+          onChange={(event) => {
+            setAge(event.target.value);
+          }}
+          error="required"
+          required
+        />
         <label>Mobile No.:</label>
-        <div>
         <input
-        value={result.length === 1 ? result[0].mobileno:""}
           type="text"
           name="mobileno"
-          onChange={handleChange}
-            style={
-              mobilenoFlag ?
-                { borderBottom: '2px solid #888' }
-                :
-                { borderBottom: '2px solid red' }
-            }
-            error="required"
-            required
-          />
-          <br/>
-          <span
-            style={
-              mobilenoFlag ?
-                { color: 'black' }
-                :
-                { color: 'red' }
-            }
-          >{
-              mobilenoFlag ?
-                ''
-                :
-                'invalid mobileno'
-              }</span>
-        </div>
+          onChange={(event) => {
+            setMobileno(event.target.value);
+          }}
+          error="required"
+          required
+        />
         <label>Tested By:</label>
-        <div>
         <input
-        value={result.length === 1 ? result[0].testedby:""}
           type="text"
           name="testedby"
-          onChange={handleChange}
-            style={
-              testedbyFlag ?
-                { borderBottom: '2px solid #888' }
-                :
-                { borderBottom: '2px solid red' }
-            }
-            error="required"
-            required
-          />
-          <br/>
-          <span
-            style={
-              testedbyFlag ?
-                { color: 'black' }
-                :
-                { color: 'red' }
-            }
-          >{
-              testedbyFlag ?
-                ''
-                :
-                'invalid name'
-              }</span>
-        </div>
+          onChange={(event) => {
+            setTestedby(event.target.value);
+          }}
+          error="required"
+          required
+        />
         <label>Date:</label>
-        <div>
         <input
-        value={result.length === 1 ? result[0].date:""}
           type="date"
           name="date"
-          onChange={handleChange}
-            style={
-              dateFlag ?
-                { borderBottom: '2px solid #888' }
-                :
-                { borderBottom: '2px solid red' }
-            }
-            error="required"
-            required
-          />
-          <br/>
-          <span
-            style={
-              dateFlag ?
-                { color: 'black' }
-                :
-                { color: 'red' }
-            }
-          >{
-              dateFlag ?
-                ''
-                :
-                'invalid date'
-              }</span>
-        </div>
+          onChange={(event) => {
+            setDate(event.target.value);
+          }}
+          error="required"
+          required
+        />
         
         <button onClick={addCustomer1}>Add Customer</button>
       </div>

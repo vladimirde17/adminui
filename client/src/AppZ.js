@@ -4,10 +4,15 @@ import Axios from "axios";
 import SearchBar from "./Components/SearchBar";
 
 function App() {
+  
+  const [name1, setName] = useState("");
+  const [age1, setAge] = useState(0);
+  const [mobileno1, setMobileno] = useState("");
+  const [testedby1, setTestedby] = useState("");
+  const [date1, setDate] = useState("");
 
-  const [filteredName, setFilteredName] = useState(null)
+  const [filteredOrder, setFilteredOrder] = useState(null)
 
-  const [result, setResult] = useState([])
   /*
   const displayInfo = () => {
     console.log(name+age+country+postion+wage);
@@ -49,7 +54,7 @@ function App() {
         flag = /^[a-z ]*$/i.test(value)
         break;
       case 'age' :
-        flag =  /^100|[1-9]?\d$/.test(value)
+        flag = /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/.test(value)  // /^100|[1-9]?\d$/.test(value)
         break;
       case 'mobileno' :
         flag =  /^(\+\d{1,3}[- ]?)?\d{10}$/.test(value)
@@ -142,16 +147,14 @@ function App() {
     testedbyFlag,
     dateFlag
   } = flags
-  
   return (
     <div className="App">
-      <SearchBar setFound={setFilteredName} setResult={setResult} data={customer1List} placeholder="Enter....." ></SearchBar>
-      {console.log("found",filteredName)}
+      <SearchBar setFound={setFilteredOrder} data={customer1List} placeholder="Enter....." ></SearchBar>
+      {console.log("found",filteredOrder)}
       <div className="information">
       <label>Order No.:</label>
         <div>
           <input
-            value={result.length === 1 ? result[0].orderno:""}
             type="number"
             name="orderno"
             onChange={handleChange}
@@ -182,7 +185,6 @@ function App() {
         <label>Name:</label>
         <div>
         <input
-        value={result.length === 1 ? result[0].name:""}
           type="text"
           name="name"
           onChange={handleChange}
@@ -213,7 +215,6 @@ function App() {
         <label>Age:</label>
         <div>
         <input
-        value={result.length === 1 ? result[0].age:""}
           type="number"
           name="age"
           onChange={handleChange}
@@ -244,7 +245,6 @@ function App() {
         <label>Mobile No.:</label>
         <div>
         <input
-        value={result.length === 1 ? result[0].mobileno:""}
           type="text"
           name="mobileno"
           onChange={handleChange}
@@ -275,7 +275,6 @@ function App() {
         <label>Tested By:</label>
         <div>
         <input
-        value={result.length === 1 ? result[0].testedby:""}
           type="text"
           name="testedby"
           onChange={handleChange}
@@ -306,7 +305,6 @@ function App() {
         <label>Date:</label>
         <div>
         <input
-        value={result.length === 1 ? result[0].date:""}
           type="date"
           name="date"
           onChange={handleChange}

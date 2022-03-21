@@ -50,6 +50,20 @@ app.get("/customer1", (req, res) => {
     }
   });
 });
+/////////////////////////////////////////////////////////////
+
+app.get("/customername", (req, res) => {
+  let name = decodeURI(req.query.name)
+  db.query(`SELECT * FROM customer1 Where name = '${name}'`, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
+);
+//////////////////////////////////////////////////////////////
 
 app.put("/update", (req, res) => {
   const orderno = req.body.orderno;
